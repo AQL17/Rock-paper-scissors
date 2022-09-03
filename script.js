@@ -25,11 +25,34 @@ function round(playerSelection , computerSelection){
         return "Draw";
     }
 }
-
-
-for(let i = 0; i < 5; i++){
+function game(){
+let oppnum = 0;
+let usernum = 0;
+for(let i = 0; i < 5; i++){ 
     let computerSelection = GetComputerChoice();
-let playerSelection = prompt("Enter");
-console.log(playerSelection + ' vs ' + computerSelection)
+    let playerSelection = prompt("Enter");
+    console.log(playerSelection + ' vs ' + computerSelection)
     console.log(round(playerSelection, computerSelection));
+    if (round(playerSelection,computerSelection).startsWith('You win!'))
+    {
+        ++usernum;
+        console.log(`Your score : ${usernum}   Opponent Score : ${oppnum}` );
+    }
+    else if (round(playerSelection,computerSelection).startsWith('You lose!')){
+        ++oppnum;
+        console.log(`Your score : ${usernum}   Opponent Score : ${oppnum}` );
+    }else {
+        console.log(`Your score : ${usernum}   Opponent Score : ${oppnum}` );
+    }
 }
+if (usernum > oppnum){
+    console.log('You won the game.')
+}else if (usernum < oppnum){
+    console.log('You lost the game')
+}else {
+    console.log("It's a Tie.")
+}
+}
+game();
+
+
