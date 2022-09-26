@@ -24,37 +24,49 @@ function round(playerSelection , computerSelection){
         return "Draw";
     }
 }
-
-let playerSelection;
-const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => {
-
-    button.addEventListener('click', () => {
-        playerSelection = button.className
-        game();
+    let playerSelection;
+    let computerSelection;
+    let oppscore = 0;
+    let userscore = 0;
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+             playerSelection = (button.className)
+             game();
+        })
     });
 
-});
+    function game(){
+        computerSelection = GetComputerChoice();
+        document.getElementById('container').innerHTML = `${playerSelection.toUpperCase()} vs ${computerSelection.toUpperCase()}`
+        document.getElementById('display').innerHTML = round(playerSelection, computerSelection);  
+        score();
 
-
-
-
-function game(){
-
-    let computerSelection = GetComputerChoice();
-    console.log(playerSelection + ' vs ' + computerSelection)
-    console.log(round(playerSelection, computerSelection));
-   /* if (round(playerSelection,computerSelection).startsWith('You win!'))
-    {
-
-        console.log(`Your score : ${usernum}   Opponent Score : ${oppnum}` );
     }
-    else if (round(playerSelection,computerSelection).startsWith('You lose!')){
+    function score(){
+        if (round(playerSelection, computerSelection).startsWith('You win!')){
+            ++userscore;
+            document.getElementById('result').innerHTML = `Your score : ${userscore}   Opponent Score : ${oppscore}`
+        }
+        else if (round(playerSelection, computerSelection).startsWith('You lose!')){
+            ++oppscore;
+            document.getElementById('result').innerHTML = `Your score : ${userscore}   Opponent Score : ${oppscore}`
+        }
+        else{
+            document.getElementById('result').innerHTML = `Your score : ${userscore}   Opponent Score : ${oppscore}`
 
-        console.log(`Your score : ${usernum}   Opponent Score : ${oppnum}` );
-    }else {
-        console.log(`Your score : ${usernum}   Opponent Score : ${oppnum}` );
+        }
+
+
+        if (userscore === 5){
+            alert('You won the game');
+            userscore = 0;
+            oppscore = 0;
+        }
+        else if (oppscore === 5){
+            alert('You lose the game');
+            userscore = 0;
+            oppscore = 0;
+        }
+
     }
-*/
-
-}
