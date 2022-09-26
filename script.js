@@ -24,17 +24,27 @@ function round(playerSelection , computerSelection){
         return "Draw";
     }
 }
-const rock = document.querySelector('#rock');
-rock.onclick = () => {console.log('works')};
+
+let playerSelection;
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+
+    button.addEventListener('click', () => {
+        playerSelection = button.className
+        game();
+    });
+
+});
+
+
+
+
 function game(){
 
-
-
     let computerSelection = GetComputerChoice();
-    let playerSelection = prompt("Enter");
     console.log(playerSelection + ' vs ' + computerSelection)
     console.log(round(playerSelection, computerSelection));
-    if (round(playerSelection,computerSelection).startsWith('You win!'))
+   /* if (round(playerSelection,computerSelection).startsWith('You win!'))
     {
 
         console.log(`Your score : ${usernum}   Opponent Score : ${oppnum}` );
@@ -45,8 +55,6 @@ function game(){
     }else {
         console.log(`Your score : ${usernum}   Opponent Score : ${oppnum}` );
     }
-
+*/
 
 }
-
-
